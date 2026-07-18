@@ -210,7 +210,7 @@ export default function App() {
             teamtaptonic@gmail.com
           </a>
         </div>
-        <div className="contact-cables" aria-hidden="true">
+        {/* <div className="contact-cables" aria-hidden="true">
           <svg viewBox="0 0 400 120" fill="none">
             <defs>
               <linearGradient id="c1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -230,7 +230,7 @@ export default function App() {
             <path d="M0,50 Q200,20 400,80" stroke="url(#c2)" strokeWidth="2" fill="none" opacity="0.5" />
             <path d="M0,70 Q200,40 400,100" stroke="url(#c3)" strokeWidth="2" fill="none" opacity="0.4" />
           </svg>
-        </div>
+        </div> */}
       </section>
 
       {/* FOOTER */}
