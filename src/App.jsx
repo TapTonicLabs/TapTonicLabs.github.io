@@ -23,6 +23,7 @@ const APPS = [
     accent: "#7C5CBF",
     gradient: "linear-gradient(135deg, #6A0DAD 0%, #00C8FF 100%)",
     icon: logoSrc,
+    link: null,
   },
   {
     name: "GlobalRates",
@@ -33,6 +34,7 @@ const APPS = [
     accent: "#F5A623",
     gradient: "linear-gradient(90deg, #F5D000, #39D353)",
     icon: GRIcon,
+    link: "/apps/GlobalRates/",
   },
 ];
 
@@ -155,21 +157,45 @@ export default function App() {
             <h2 className="section-title">What we've built</h2>
           </div>
           <div className="apps-grid">
-            {APPS.map((app) => (
-              <div className="app-card" key={app.name} style={{ "--card-accent": app.accent }}>
-                <div className="app-card-top">
-                  <img className="app-icon" src={app.icon} />
-                  <span className={`app-status ${app.status === "Live on App Store" ? "app-status--live" : "app-status--dev"}`}>
-                    {app.status}
-                  </span>
-                </div>
-                <div className="app-gradient-bar" style={{ background: app.gradient }} />
-                <h3 className="app-name">{app.name}</h3>
-                <span className="app-category">{app.category}</span>
-                <p className="app-desc">{app.description}</p>
-              </div>
-            ))}
-          </div>
+  {APPS.map((app) => {
+    const content = (
+      <>
+        <div className="app-card-top">
+          <img className="app-icon" src={app.icon} alt={`${app.name} icon`} />
+          <span className={`app-status ${app.status === "Live on App Store" ? "app-status--live" : "app-status--dev"}`}>
+            {app.status}
+          </span>
+        </div>
+
+        <div className="app-gradient-bar" style={{ background: app.gradient }} />
+        <h3 className="app-name">{app.name}</h3>
+        <span className="app-category">{app.category}</span>
+        <p className="app-desc">{app.description}</p>
+      </>
+    );
+
+    return app.link ? (
+      <a
+        key={app.name}
+        href={app.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="app-card"
+        style={{ "--card-accent": app.accent }}
+      >
+        {content}
+      </a>
+    ) : (
+      <div
+        key={app.name}
+        className="app-card"
+        style={{ "--card-accent": app.accent }}
+      >
+        {content}
+      </div>
+    );
+  })}
+</div>
         </div>
       </section>
 

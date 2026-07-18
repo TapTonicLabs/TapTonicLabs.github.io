@@ -289,6 +289,8 @@
      height: 100%;
    }
    
+
+   
    .divider-line--purple { background: linear-gradient(90deg, #6A0DAD, #00C8FF); }
    .divider-line--orange { background: linear-gradient(90deg, #FF3300, #F5A623); }
    .divider-line--green  { background: linear-gradient(90deg, #F5D000, #39D353); }
@@ -421,6 +423,12 @@
      color: var(--muted);
      line-height: 1.65;
    }
+
+   .app-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
    
    /* ── Pillars ── */
    .pillars-grid {
