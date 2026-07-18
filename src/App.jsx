@@ -125,12 +125,13 @@ export default function App() {
         <div className="hero-inner">
           <div className="hero-eyebrow">Independent App Studio · Since 2026</div>
           <h1 className="hero-headline">
-            Apps that<br />
-            <span className="hero-headline-gradient">ship.</span>
+            Crafting Apps<br />
+            That{' '}
+            <span className="hero-headline-gradient">Matter</span>
           </h1>
           <p className="hero-sub">
-          TapTonic Labs builds polished mobile experiences that combine thoughtful design, reliable technology, and meaningful utility — from concept to App Store.         
-           </p>
+            Thoughtfully designed. Carefully engineered. Continuously refined. We create mobile experiences that people love to discover and keep coming back to.
+          </p>
           <div className="hero-actions">
             <a href="#apps" className="btn btn-primary">See our work</a>
             <a href="#contact" className="btn btn-ghost">Work with us ↗</a>
@@ -200,14 +201,19 @@ export default function App() {
       <section className="section section--contact" id="contact">
         <div className="container container--narrow">
           <h2 className="contact-headline">
-            Have an app idea?<br />
-            <span className="contact-headline-accent">Let's wire it up.</span>
+            Great apps start<br />
+            <span className="contact-headline-accent">with great ideas.</span>
           </h2>
           <p className="contact-sub">
             Have an idea, a question, or want to follow our journey? We'd love to hear from you.
           </p>
-          <a href="mailto:teamtaptonic@gmail.com" className="btn btn-primary btn-large">
-            teamtaptonic@gmail.com
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=teamtaptonic@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary btn-large"
+          >
+            Get in touch
           </a>
         </div>
         {/* <div className="contact-cables" aria-hidden="true">
@@ -242,7 +248,7 @@ export default function App() {
           </div>
           <p className="footer-copy">© 2026 TapTonic Labs. Built and shipped independently.</p>
           <div className="footer-links">
-            <a href="https://github.com/TapTonicLabs" target="_blank" rel="noreferrer">GitHub</a>
+            {/* <a href="https://github.com/TapTonicLabs" target="_blank" rel="noreferrer">GitHub</a> */}
           </div>
         </div>
       </footer>
