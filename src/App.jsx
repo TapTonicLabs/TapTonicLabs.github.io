@@ -1,122 +1,251 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useEffect, useRef, useState } from "react";
+import logoSrc from "./assets/Logo.png";
+import BrandTrans from "./assets/Brand-transparent.png";
+import GRIcon from "./assets/GRIcon.png";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const APPS = [
+  // {
+  //   name: "PrayerFlow",
+  //   category: "Faith & Spirituality",
+  //   description:
+  //     "A daily prayer companion that keeps you grounded — AI-assisted prayers, scripture rotation, streak tracking, and a personal journal.",
+  //   status: "In Development",
+  //   accent: "#7C5CBF",
+  //   gradient: "linear-gradient(135deg, #6A0DAD 0%, #00C8FF 100%)",
+  //   icon: logoSrc,
+  // },
+  {
+    name: "Project Halo",
+    category: "Coming Soon",
+    description: "Coming Soon",
+    status: "In Development",
+    accent: "#7C5CBF",
+    gradient: "linear-gradient(135deg, #6A0DAD 0%, #00C8FF 100%)",
+    icon: logoSrc,
+  },
+  {
+    name: "GlobalRates",
+    category: "Finance & Travel",
+    description:
+      "A fast, reliable currency converter built for travelers and global users. Get real-time exchange rates, multiple themes, and a simple experience designed to make conversions effortless.",
+    status: "Live on App Store",
+    accent: "#F5A623",
+    gradient: "linear-gradient(90deg, #F5D000, #39D353)",
+    icon: GRIcon,
+  },
+];
 
+const PILLARS = [
+  {
+    label: "Crafted with intent",
+    body: "Every screen, every transition, every edge case. Thoughtful design and reliable engineering guide every product we ship.",
+    icon: "⚡",
+  },
+  {
+    label: "Built for real people",
+    body: "Technology should feel effortless. We create experiences that are intuitive, accessible, and built around how people live.", icon: "◎",
+  },
+  {
+    label: "From idea to impact",
+    body: "We turn concepts into shipped products — continuously improving through real user feedback.",
+    icon: "🚀",
+  },
+];
+
+function CableArc({ id, gradient, startX, startY, endX, endY, delay = 0, count = 3 }) {
+  const lines = Array.from({ length: count });
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    <g className="cable-group">
+      {lines.map((_, i) => {
+        const offset = (i - (count - 1) / 2) * 14;
+        const cx = (startX + endX) / 2 + offset * 0.5;
+        const cy = (startY + endY) / 2 - 90 + offset * 0.3;
+        const opacity = 1 - i * 0.18;
+        return (
+          <path
+            key={i}
+            d={`M${startX + offset * 0.3},${startY} Q${cx},${cy} ${endX + offset * 0.5},${endY}`}
+            stroke={`url(#${id}-grad-${i})`}
+            strokeWidth={i === 0 ? 3.5 : i === 1 ? 2.5 : 1.8}
+            fill="none"
+            opacity={opacity}
+            className="cable-path"
+            style={{ animationDelay: `${delay + i * 0.15}s` }}
+          />
+        );
+      })}
+      <defs>
+        {lines.map((_, i) => (
+          <linearGradient key={i} id={`${id}-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={gradient[0]} />
+            <stop offset="100%" stopColor={gradient[1]} />
+          </linearGradient>
+        ))}
+      </defs>
+    </g>
+  );
 }
 
-export default App
+function HeroCables() {
+  return (
+    <div className="hero-cables" aria-hidden="true">
+      <img className='brand-transparent' src={BrandTrans} alt=""></img>
+    </div>
+  );
+}
+
+export default function App() {
+  const [scrolled, setScrolled] = useState(false);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div className="site">
+      {/* NAV */}
+      <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
+        <a href="#" className="nav-logo">
+          <img src={logoSrc} alt="TapTonic Labs" className="nav-logo-img" />
+          <span className="nav-logo-text">TapTonic <span className="nav-logo-sub">Labs</span></span>
+        </a>
+        <div className="nav-links">
+          <a href="#apps">Apps</a>
+          <a href="#about">About</a>
+          <a href="#contact" className="nav-cta">Get in touch</a>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section className="hero" ref={heroRef}>
+        <div className="hero-inner">
+          <div className="hero-eyebrow">Independent App Studio · Since 2026</div>
+          <h1 className="hero-headline">
+            Apps that<br />
+            <span className="hero-headline-gradient">ship.</span>
+          </h1>
+          <p className="hero-sub">
+          TapTonic Labs builds polished mobile experiences that combine thoughtful design, reliable technology, and meaningful utility — from concept to App Store.         
+           </p>
+          <div className="hero-actions">
+            <a href="#apps" className="btn btn-primary">See our work</a>
+            <a href="#contact" className="btn btn-ghost">Work with us ↗</a>
+          </div>
+        </div>
+        <HeroCables />
+      </section>
+
+      {/* DIVIDER */}
+      <div className="section-divider" aria-hidden="true">
+        <div className="divider-line divider-line--purple" />
+        <div className="divider-line divider-line--orange" />
+        <div className="divider-line divider-line--green" />
+      </div>
+
+      {/* APPS */}
+      <section className="section" id="apps">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">Portfolio</span>
+            <h2 className="section-title">What we've built</h2>
+          </div>
+          <div className="apps-grid">
+            {APPS.map((app) => (
+              <div className="app-card" key={app.name} style={{ "--card-accent": app.accent }}>
+                <div className="app-card-top">
+                  <img className="app-icon" src={app.icon} />
+                  <span className={`app-status ${app.status === "Live on App Store" ? "app-status--live" : "app-status--dev"}`}>
+                    {app.status}
+                  </span>
+                </div>
+                <div className="app-gradient-bar" style={{ background: app.gradient }} />
+                <h3 className="app-name">{app.name}</h3>
+                <span className="app-category">{app.category}</span>
+                <p className="app-desc">{app.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT / PILLARS */}
+      <section className="section section--dark" id="about">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">Philosophy</span>
+            <h2 className="section-title">How we operate</h2>
+          </div>
+          <div className="pillars-grid">
+            {PILLARS.map((p) => (
+              <div className="pillar" key={p.label}>
+                <span className="pillar-icon">{p.icon}</span>
+                <h3 className="pillar-label">{p.label}</h3>
+                <p className="pillar-body">{p.body}</p>
+              </div>
+            ))}
+          </div>
+          {/* <div className="stack-tags">
+            {["React Native", "Expo", "EAS", "Supabase", "RevenueCat", "AdMob", "TypeScript", "Node.js"].map((t) => (
+              <span className="stack-tag" key={t}>{t}</span>
+            ))}
+          </div> */}
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section className="section section--contact" id="contact">
+        <div className="container container--narrow">
+          <h2 className="contact-headline">
+            Have an app idea?<br />
+            <span className="contact-headline-accent">Let's wire it up.</span>
+          </h2>
+          <p className="contact-sub">
+            Have an idea, a question, or want to follow our journey? We'd love to hear from you.
+          </p>
+          <a href="mailto:teamtaptonic@gmail.com" className="btn btn-primary btn-large">
+            teamtaptonic@gmail.com
+          </a>
+        </div>
+        <div className="contact-cables" aria-hidden="true">
+          <svg viewBox="0 0 400 120" fill="none">
+            <defs>
+              <linearGradient id="c1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#6A0DAD" />
+                <stop offset="100%" stopColor="#00C8FF" />
+              </linearGradient>
+              <linearGradient id="c2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#FF3300" />
+                <stop offset="100%" stopColor="#F5A623" />
+              </linearGradient>
+              <linearGradient id="c3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#F5D000" />
+                <stop offset="100%" stopColor="#39D353" />
+              </linearGradient>
+            </defs>
+            <path d="M0,30 Q200,0 400,60" stroke="url(#c1)" strokeWidth="2" fill="none" opacity="0.6" />
+            <path d="M0,50 Q200,20 400,80" stroke="url(#c2)" strokeWidth="2" fill="none" opacity="0.5" />
+            <path d="M0,70 Q200,40 400,100" stroke="url(#c3)" strokeWidth="2" fill="none" opacity="0.4" />
+          </svg>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="footer">
+        <div className="container footer-inner">
+          <div className="footer-logo">
+            <img src={logoSrc} alt="" className="footer-logo-img" />
+            <span>TapTonic Labs</span>
+          </div>
+          <p className="footer-copy">© 2026 TapTonic Labs. Built and shipped independently.</p>
+          <div className="footer-links">
+            <a href="https://github.com/TapTonicLabs" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
