@@ -2,28 +2,20 @@ import { useEffect, useRef, useState } from "react";
 import logoSrc from "./assets/Logo.png";
 import BrandTrans from "./assets/Brand-transparent.png";
 import GRIcon from "./assets/GRIcon.png";
+import PrayerNestIcon from "./assets/PrayerNestIcon.png";
 import "./App.css";
 
 const APPS = [
-  // {
-  //   name: "PrayerFlow",
-  //   category: "Faith & Spirituality",
-  //   description:
-  //     "A daily prayer companion that keeps you grounded — AI-assisted prayers, scripture rotation, streak tracking, and a personal journal.",
-  //   status: "In Development",
-  //   accent: "#7C5CBF",
-  //   gradient: "linear-gradient(135deg, #6A0DAD 0%, #00C8FF 100%)",
-  //   icon: logoSrc,
-  // },
   {
-    name: "Project Halo",
-    category: "Coming Soon",
-    description: "Coming Soon",
+    name: "PrayerNest",
+    category: "Faith & Spirituality",
+    description:
+      "A daily prayer companion for reflection, gratitude, and growth — AI-assisted prayers, scripture rotation, streak tracking, and a personal journal.",
     status: "In Development",
-    accent: "#7C5CBF",
-    gradient: "linear-gradient(135deg, #6A0DAD 0%, #00C8FF 100%)",
-    icon: logoSrc,
-    link: null,
+    accent: "#6B7FD7",
+    gradient: "linear-gradient(135deg, #6B7FD7 0%, #E8C547 100%)",
+    icon: PrayerNestIcon,
+    link: "/apps/PrayerNest/",
   },
   {
     name: "GlobalRates",
