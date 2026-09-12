@@ -1,16 +1,48 @@
-# React + Vite
+# TapTonic Labs
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The marketing site for TapTonic Labs, an independent mobile app studio. Built with React + Vite and deployed to GitHub Pages.
 
-Currently, two official plugins are available:
+Live at [taptoniclabs.github.io](https://taptoniclabs.github.io) (or the studio's custom domain, if configured).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What's here
 
-## React Compiler
+- `src/` — the landing page (React): hero, app portfolio, philosophy section, contact
+- `public/apps/` — static per-app pages (privacy policy, terms of service, support) served at `/apps/<AppName>/`, linked from app store listings
+- `public/app-ads.txt` — ad network authorization file
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Open the printed local URL to view the site with hot module reload.
+
+## Building
+
+```bash
+npm run build
+```
+
+Outputs a production build to `dist/`. Preview it locally with:
+
+```bash
+npm run preview
+```
+
+## Deployment
+
+Pushes to `main` trigger [`.github/workflows/`](.github/workflows) to build the site and deploy `dist/` to GitHub Pages automatically — no manual deploy step needed.
+
+## Adding a new app
+
+1. Add the app's icon to `src/assets/` and an entry to the `APPS` array in [`src/App.jsx`](src/App.jsx).
+2. Add its static pages (index, privacy policy, terms of service) under `public/apps/<AppName>/`.
+3. Push to `main` — the site rebuilds and redeploys automatically.
+
+## Tech stack
+
+- [React](https://react.dev) 18
+- [Vite](https://vitejs.dev) 5
+- Plain CSS ([`src/App.css`](src/App.css)) — no CSS framework
