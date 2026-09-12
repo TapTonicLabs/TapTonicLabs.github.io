@@ -28,6 +28,16 @@ const APPS = [
     icon: GRIcon,
     link: "/apps/GlobalRates/",
   },
+  {
+    name: "Project Meridian",
+    category: "Coming Soon",
+    description: "Coming Soon",
+    status: "In Development",
+    accent: "#7C5CBF",
+    gradient: "linear-gradient(135deg, #6A0DAD 0%, #00C8FF 100%)",
+    icon: logoSrc,
+    link: null,
+  },
 ];
 
 const PILLARS = [
